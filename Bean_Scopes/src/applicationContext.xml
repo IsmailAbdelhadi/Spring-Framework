@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd">
+
+
+    <!-- Define your beans here -->
+
+
+
+
+    <!-- Bean definitions for Draw2d and Draw3d -->
+    <bean id="drawBean2d"
+          class="com.scopes.Draw2D">
+    </bean>
+
+    <bean id="drawBean3d"
+          class="com.scopes.Draw3D">
+    </bean>
+
+
+
+    <!-- Bean definition for Circle with Injection Beans "constructor injection" -->
+    <bean id="circle" class="com.scopes.Circle" scope="singleton">
+        <constructor-arg ref="drawBean2d"/>
+        <constructor-arg ref="drawBean3d"/>
+    </bean>
+
+
+
+
+    <!-- Bean definition for Square with Injection Beans "setter injection" -->
+    <bean id="square" class="com.scopes.Square" scope="prototype">
+        <property name="drawShapeFor2d" ref="drawBean2d"/>
+        <property name="drawShapeFor3d" ref="drawBean3d"/>
+    </bean>
+
+
+</beans>
+
+
+
+
+
